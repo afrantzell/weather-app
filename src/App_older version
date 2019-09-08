@@ -1,0 +1,54 @@
+import React, { Component } from 'react';
+import './App.css';
+
+const API = `http://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=${process.env.REACT_APP_API_KEY}`
+const API_KEY = process.env.REACT_APP_API_KEY
+
+class App extends Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            hits: "",
+            city: "",
+            country: ""
+        }
+    }
+    
+componentDidMount() {
+    fetch(API)
+        .then(response => response.json())
+        .then(data=> this.setState({ hits: data.weather.main, 
+                                   city: data.name,
+                                    country: data.sys.country
+                                   }));
+}
+        
+  render(){
+      
+      //const { results } = this.state.country;
+      console.log(this.state.country)
+      
+      return(
+      
+          <div>
+          
+        //<h1>weather app</h1>
+          //  <div className = "container">
+
+          //{results.map(x => 
+                //<div className = "card">
+    <h1><u>{this.state.hits}</u></h1> 
+    <p>{this.state.city}</p>       
+        //</div>
+    
+          //)}
+          
+      //</div>
+      </div>
+          )
+  
+}
+          
+          }
+
+export default App;
